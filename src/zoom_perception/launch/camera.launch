@@ -1,7 +1,5 @@
 <launch>
     <node pkg="tf2_ros" type="static_transform_publisher" name="camera_link_broadcaster" args="0.21 0 0 0 0 0 base_link camera_link" />
-    <include file="$(find realsense2_camera)/launch/opensource_tracking.launch">
-        <!--<arg name="enable_depth" value="true" />-->
-    </include>
+    <include file="$(find zoom_perception)/launch/opensource_tracking.launch"/> 
 
 </launch>
