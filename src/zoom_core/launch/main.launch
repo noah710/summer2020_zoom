@@ -8,5 +8,5 @@
     </node>
 
      <include file="$(find zoom_perception)/launch/camera.launch"></include>
-
+     <include file="$(find zoom_core)/launch/nav.launch"/>
 </launch>
