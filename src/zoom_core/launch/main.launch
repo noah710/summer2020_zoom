@@ -1,5 +1,7 @@
 <launch>
 
+    <master auto="start"/>
+
     <!-- launch arduino bridge -->
     <node name="arduino_bridge" pkg="rosserial_python" type="serial_node.py">
         <param name="port" value="/dev/ttyACM0" />
