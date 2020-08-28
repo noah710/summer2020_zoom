@@ -4,6 +4,8 @@ footprint: [[0.2, -0.15], [0.2, 0.15], [-0.2,-0.15], [-0.2, 0.15]]
 #robot_radius: ir_of_robot
 inflation_radius: 0.2
 
-observation_sources: point_cloud_sensor
+observation_sources: laser_scan_sensor point_cloud_sensor
+
+laser_scan_sensor: {sensor_frame: camera_link, data_type: LaserScan, topic: /scan, marking: true, clearing: true}
 
 point_cloud_sensor: {sensor_frame: camera_link, data_type: PointCloud2, topic: /rtabmap/cloud_map, marking: true, clearing: true}
