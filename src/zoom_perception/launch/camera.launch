@@ -1,12 +1,13 @@
 <launch>
     <!--<include file="$(find zoom_perception)/launch/opensource_tracking.launch"/> -->
+    <arg name="offline"          default="false"/>
     <include unless="$(arg offline)" 
         file="$(find realsense2_camera)/launch/rs_camera.launch">
         <arg name="align_depth" value="true"/>
         <arg name="linear_accel_cov" value="1.0"/>
         <arg name="unite_imu_method" value="linear_interpolation"/>
     </include>
-    
+
     <node pkg="depthimage_to_laserscan" type="depthimage_to_laserscan" name="depthimage_to_laserscan">
         <remap from="image" to="/camera/depth/image_rect_raw" />
         <remap from="camera_info" to="/camera/depth/camera_info" />
