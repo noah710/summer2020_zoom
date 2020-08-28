@@ -7,6 +7,8 @@
         <param name="port" value="/dev/ttyACM0" />
     </node>
 
-     <include file="$(find zoom_perception)/launch/camera.launch"></include>
-     <include file="$(find zoom_core)/launch/nav.launch"/>
+    <node name="tf_broadcaster" pkg="zoom_core" type="tf_broadcaster"/>
+    
+    <include file="$(find zoom_perception)/launch/camera.launch"></include>
+    <include file="$(find zoom_core)/launch/nav.launch"/>
 </launch>
