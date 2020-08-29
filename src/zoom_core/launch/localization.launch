@@ -1,5 +1,15 @@
 <launch>
 
+    <include file="$(find rtabmap_ros)/launch/rtabmap.launch">
+        <arg name="args" value="--delete_db_on_start"/>
+        <arg name="rgb_topic" value="/camera/color/image_raw"/>
+        <arg name="depth_topic" value="/camera/aligned_depth_to_color/image_raw"/>
+        <arg name="camera_info_topic" value="/camera/color/camera_info"/>
+        <arg name="depth_camera_info_topic" value="/camera/depth/camera_info"/>
+        <arg name="rtabmapviz" value="false"/>
+        <arg name="rviz" value="false"/>
+    </include>
+
     <node pkg="robot_localization" type="ukf_localization_node" name="odom_ukf">
         <param name="two_d_mode" value="true"/>
         
@@ -11,6 +21,8 @@
 
         <param name="imu0" value="/imu/data"/>
         <param name="imu0_differential" value="false"/>
+        <param name="imu0_relative" value="true"/>
+        <param name="imu0_remove_gravitational_acceleration" value="false"/>
         <rosparam param="imu0_config">[false,false,false,
                                             true,true,true,
                                             false,true,false,
@@ -18,12 +30,21 @@
                                             true,true,true]
         </rosparam>
         
+        <param name="odom0" value="rtabmap/odom"/>
+        <rosparam param="odom0_config">[true,true,true,
+                                            true,true,true,
+                                            true,true,true,
+                                            true,true,true,
+                                            true,true,true]
+        </rosparam>
+        <param name="odom0_relative" value="true"/>
+        <param name="odom0_pose_rejection_threshold" value="10000000"/>
+        <param name="odom0_twist_rejection_threshold" value="10000000"/>
+
         <param name="publish_tf" value="true"/>
         <param name="frequency" value="300"/>
-        <param name="imu0_relative" value="true"/>
-        <param name="use_control" value="false"/>
-        <param name="imu0_remove_gravitational_acceleration" value="false"/>
         <param name="publish_acceleration" value="true"/>
+
     </node>
 
 </launch>
