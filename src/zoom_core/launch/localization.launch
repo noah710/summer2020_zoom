@@ -22,6 +22,7 @@
         <param name="frequency" value="300"/>
         <param name="imu0_relative" value="false"/>
         <param name="use_control" value="false"/>
+        <param name="imu0_remove_gravitational_acceleration" value="true"/>
     </node>
 
 </launch>
