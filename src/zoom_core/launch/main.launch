@@ -9,7 +9,7 @@
 
     <node name="tf_broadcaster" pkg="zoom_core" type="tf_broadcaster"/>
     
-    <include file="$(find realsense2_camera)/launch/opensource_tracking.launch"/>
+    <include file="$(find zoom_perception)/launch/opensource_tracking.launch"/>
     <!--<include file="$(find zoom_core)/launch/nav.launch"/>-->
 
 </launch>
