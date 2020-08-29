@@ -11,6 +11,6 @@
     
     <include file="$(find zoom_perception)/launch/camera.launch"/>
     <include file="$(find zoom_core)/launch/localization.launch"/>
-    <include file="$(find zoom_core)/launch/nav.launch"/>
+    <!--<include file="$(find zoom_core)/launch/nav.launch"/>-->
 
 </launch>
