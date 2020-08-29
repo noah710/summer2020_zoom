@@ -9,6 +9,8 @@
 
     <node name="tf_broadcaster" pkg="zoom_core" type="tf_broadcaster"/>
     
-    <include file="$(find zoom_perception)/launch/camera.launch"></include>
+    <include file="$(find zoom_perception)/launch/camera.launch"/>
+    <include file="$(find zoom_core)/launch/localization.launch"/>
     <include file="$(find zoom_core)/launch/nav.launch"/>
+
 </launch>

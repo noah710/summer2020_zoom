@@ -1,42 +1,20 @@
 <launch>
     <!--<include file="$(find zoom_perception)/launch/opensource_tracking.launch"/> -->
-    <include file="$(find realsense2_camera)/launch/rs_rgbd.launch">
-        <arg name="enable_depth" value="true" />
+    <arg name="offline"          default="false"/>
+    <include unless="$(arg offline)" 
+        file="$(find realsense2_camera)/launch/rs_camera.launch">
+        <arg name="align_depth" value="true"/>
+        <arg name="linear_accel_cov" value="1.0"/>
+        <arg name="unite_imu_method" value="linear_interpolation"/>
     </include>
 
-        <node pkg="imu_filter_madgwick" type="imu_filter_node" name="ImuFilter">
+    <node pkg="imu_filter_madgwick" type="imu_filter_node" name="ImuFilter">
         <param name="use_mag" type="bool" value="false" />
         <param name="_publish_tf" type="bool" value="false" />
         <param name="_world_frame" type="string" value="enu" />
-	<param name="fixed_frame" type="string" value="base_link"/>
+	    <param name="fixed_frame" type="string" value="base_link"/>
         <remap from="/imu/data_raw" to="/camera/imu"/>
     </node>
-
-    <include file="$(find robot_localization)/launch/ukf_template.launch"/>
-    <param name="/ukf_se/frequency" value="300"/>
-    <param name="/ukf_se/base_link_frame" value="base_link"/>
-    <param name="/ukf_se/odom0" value="rtabmap/odom"/>
-    <rosparam param="/ukf_se/odom0_config">[true,true,true,
-                                            true,true,true,
-                                            true,true,true,
-                                            true,true,true,
-                                            true,true,true]
-    </rosparam>
-    <param name="/ukf_se/odom0_relative" value="true"/>
-    <param name="/ukf_se/odom0_pose_rejection_threshold" value="10000000"/>
-    <param name="/ukf_se/odom0_twist_rejection_threshold" value="10000000"/>
-
-    <param name="/ukf_se/imu0" value="/imu/data"/>
-    <rosparam param="/ukf_se/imu0_config">[false, false, false,
-                                           true,  true,  true,
-                                           true,  true,  true,
-                                           true,  true,  true,
-                                           true,  true,  true]
-    </rosparam>
-    <param name="/ukf_se/imu0_differential" value="true"/>
-    <param name="/ukf_se/imu0_relative" value="false"/>
-    <param name="/ukf_se/use_control" value="false"/>
-    <!-- <param name="/ukf_se/odom0_config" value="{true,true,true,}"/> -->
 
     <node pkg="depthimage_to_laserscan" type="depthimage_to_laserscan" name="depthimage_to_laserscan">
         <remap from="image" to="/camera/depth/image_rect_raw" />
