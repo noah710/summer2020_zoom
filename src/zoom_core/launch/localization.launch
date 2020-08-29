@@ -19,6 +19,9 @@
         </rosparam>
         
         <param name="publish_tf" value="true"/>
+        <param name="frequency" value="300"/>
+        <param name="imu0_relative" value="false"/>
+        <param name="use_control" value="false"/>
     </node>
-    
+
 </launch>
