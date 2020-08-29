@@ -1,7 +1,7 @@
 <launch>
 
     <node pkg="robot_localization" type="ukf_localization_node" name="odom_ukf">
-        <param name="two_d_mode" value="false"/>
+        <param name="two_d_mode" value="true"/>
         
         <param name="map_frame" value="map"/>
         <param name="odom_frame" value="odom"/>
