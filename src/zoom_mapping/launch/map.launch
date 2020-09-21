@@ -13,8 +13,11 @@
   <arg name="database_path" default="~/.ros/rtabmap.db"/>
   <arg if="$(arg localization)" name="rtabmap_args" default=""/>
   <arg unless="$(arg localization)" name="rtabmap_args" default="-d"/>
+	
+
 
   <group ns="rtabmap">
+
    <!-- RGB-D Odometry -->
         <node pkg="rtabmap_ros" type="rgbd_odometry" name="rgbd_odometry" output="screen">
           <remap from="rgb/image"       to="/camera/color/image_raw"/>
@@ -67,7 +70,6 @@
 	  <param if="$(arg localization)" name="Mem/IncrementalMemory" type="string" value="false"/>
 	  <param unless="$(arg localization)" name="Mem/IncrementalMemory" type="string" value="true"/>
     </node>
-
   </group>
 
 </launch>

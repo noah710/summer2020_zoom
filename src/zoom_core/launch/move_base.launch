@@ -10,7 +10,7 @@
     <rosparam file="$(find zoom_core)/params/move_base_params.yaml" command="load"/>
     <!-- dwa_local_lanner_params yaml-->
     <rosparam file="$(find zoom_core)/params/dwa_local_planner_params.yaml" command="load" />
-    <remap from="cmd_vel" to="/turtle1/cmd_vel"/>
+    <remap from="cmd_vel" to="/turtleCHANGEMEBACK/cmd_vel"/>
     <remap from="odom" to="/odom"/>
  </node>
 
